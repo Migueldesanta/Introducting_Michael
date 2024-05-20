@@ -4,8 +4,10 @@ library(shinydashboard)
 library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
-
+library(ggplot2)
+library(dplyr)
 # Load additional dependencies and setup functions
+
 # source("global.R")
 
 # Define UI for App ----
@@ -15,9 +17,9 @@ ui <- list(
     skin = "blue",
     ### Create the app header ----
     dashboardHeader(
-      title = "App Template", # You may use a shortened form of the title here
+      title = "Introducing Michael Yun", # You may use a shortened form of the title here
       titleWidth = 250,
-      tags$li(class = "dropdown", actionLink("info", icon("info"))),
+      tags$li(class = "dropdown", actionLink("info", icon(class = "fa-solid", name = "comments"))),
       tags$li(
         class = "dropdown",
         boastUtils::surveyLink(name = "App_Template")
@@ -35,12 +37,9 @@ ui <- list(
       sidebarMenu(
         id = "pages",
         menuItem("Overview", tabName = "overview", icon = icon("gauge-high")),
-        menuItem("Prerequisites", tabName = "prerequisites", icon = icon("book")),
-        menuItem("Example", tabName = "example", icon = icon("book-open-reader")),
-        menuItem("Explore", tabName = "explore", icon = icon("wpexplorer")),
-        menuItem("Challenge", tabName = "challenge", icon = icon("gears")),
-        menuItem("Game", tabName = "game", icon = icon("gamepad")),
-        menuItem("Wizard", tabName = "wizard", icon = icon("hat-wizard")),
+        menuItem("Personal Profile", tabName = "personal_profile", icon = icon("book")),
+        menuItem("Project", tabName = "project", icon = icon("wpexplorer")),
+        menuItem("Pop Quiz", tabName = "pop_quiz", icon = icon("gears")),
         menuItem("References", tabName = "references", icon = icon("leanpub"))
       ),
       tags$div(
@@ -55,18 +54,16 @@ ui <- list(
         tabItem(
           tabName = "overview",
           withMathJax(),
-          h1("Sample Application for BOAST Apps"), # This should be the full name.
-          p("This is a sample Shiny application for BOAST. Remember, this page
-            will act like the front page (home page) of your app. Thus you will
-            want to have this page catch attention and describe (in general terms)
-            what the user can do in the rest of the app."),
+          h1("Introducing Michael Yun"), # This should be the full name.
+          p("Do you want to know more about Michael, what are Michael's academic interests, 
+            what was Michael's first project in college, 
+            what are his FUN FACTS, you can find them all here!"),
           h2("Instructions"),
-          p("This information will change depending on what you want to do."),
+          p("How to get to know Michael:"),
           tags$ol(
-            tags$li("Review any prerequiste ideas using the Prerequistes tab."),
-            tags$li("Explore the Exploration Tab."),
-            tags$li("Challenge yourself."),
-            tags$li("Play the game to test how far you've come.")
+            tags$li("Learn more about Michael using the Personal Profile Tab."),
+            tags$li("Explore Michael's project using the Project Tab."),
+            tags$li("Make a Pop Quiz")
           ),
           ##### Go Button--location will depend on your goals
           div(
@@ -99,21 +96,18 @@ ui <- list(
             div(class = "updated", "Last Update: 11/8/2022 by NJH.")
           )
         ),
-        #### Set up the Prerequisites Page ----
+        #### Set up the Personal profile Page ----
         tabItem(
-          tabName = "prerequisites",
+          tabName = "personal_profile",
           withMathJax(),
-          h2("Prerequisites"),
-          p("In order to get the most out of this app, please review the
-            following:"),
+          h2("Personal Profile"),
+          p("Something you should know about Michael:"),
           tags$ul(
-            tags$li("Pre-req 1--Technical/Conceptual Prerequisites are ideas that
-                    users need to have in order to engage with your app fully."),
-            tags$li("Pre-req 2--Contextual Prerequisites refer to any information
-                    about a context in your app that will enrich a user's
-                    understandings."),
-            tags$li("Pre-req 3"),
-            tags$li("Pre-req 4")
+            tags$li("Michael is a rising seinor double majoring in Statistics and Politics."),
+            tags$li("Michael's academic interest including voting behavior, 
+                    U.S.-China relations, and Survey Methodology."),
+            tags$li("Fun fact about Michael, he learned a party called Rent Is Too Damn High in American Politics class, 
+                    And he used this as his final paper discussion.")
           ),
           p("Notice the use of an unordered list; users can move through the
             list any way they wish."),
@@ -154,21 +148,25 @@ ui <- list(
         #### Note: you must have at least one of the following pages. You might
         #### have more than one type and/or more than one of the same type. This
         #### will be up to you and the goals for your app.
-        #### Set up an Explore Page ----
+        #### Set up Project Page ----
         tabItem(
-          tabName = "explore",
+          tabName = "project",
           withMathJax(),
-          h2("Explore the Concept"),
-          p("This page should include something for the user to do, the more
-            active and engaging, the better. The purpose of this page is to help
-            the user build a productive understanding of the concept your app
-            is dedicated to."),
-          p("Common elements include graphs, sliders, buttons, etc."),
-          p("The following comes from the NHST Caveats App:"),
+          h2("yo"),
+          p("This is Michael's first project in college using statistical skills,
+            this project focus on How does car model,location and mileage affect car prices, 
+            specifically examining how much of the variance in car prices can be attributed 
+            to differences in model and location after controlling for mileage?"),
+          # Scatter plot to check the linearity assumption between mileage and price
+          ggplot(combined_data, aes(x = mileage, y = price)) +
+            geom_point() +
+            geom_smooth(method = "lm", se = FALSE, col = "blue") +
+            labs(title = "Scatter Plot of Price vs Mileage",
+                 x = "Mileage", y = "Price")
         ),
-        #### Set up a Challenge Page ----
+        #### Set up Pop Quiz Page ----
         tabItem(
-          tabName = "challenge",
+          tabName = "pop_quiz",
           withMathJax(),
           h2("Challenge Yourself"),
           p("The general intent of a Challenge page is to have the user take
@@ -178,25 +176,6 @@ ui <- list(
           p("What this page looks like will be up to you. Something you might
             consider is to re-create the tools of the Exploration page and then
             a list of questions for the user to then answer.")
-        ),
-        #### Set up a Game Page ----
-        tabItem(
-          tabName = "game",
-          withMathJax(),
-          h2("Practice/Test Yourself with [Type of Game]"),
-          p("On this type of page, you'll set up a game for the user to play.
-            Game types include Tic-Tac-Toe, Matching, and a version Hangman to
-            name a few. If you have ideas for new game type, please let us know.")
-        ),
-        #### Set up a Wizard Page ----
-        tabItem(
-          tabName = "wizard",
-          withMathJax(),
-          h2("Wizard"),
-          p("This page will have a series of inputs and questions for the user to
-            answer/work through in order to have the app create something. These
-            types of Activity pages are currently rare as we try to avoid
-            creating 'calculators' in the BOAST project.")
         ),
         #### Set up the References Page ----
         tabItem(
@@ -223,7 +202,7 @@ ui <- list(
 
 # Define server logic ----
 server <- function(input, output, session) {
-
+  
   ## Set up Info button ----
   observeEvent(
     eventExpr = input$info,
@@ -236,8 +215,8 @@ server <- function(input, output, session) {
       )
     }
   )
-
-
+  
+  
 }
 
 # Boast App Call ----
