@@ -5,9 +5,8 @@ library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
 library(ggplot2)
-library(dplyr)
 # Load additional dependencies and setup functions
-
+project_data <- read.csv("https://raw.githubusercontent.com/Migueldesanta/Introducting_Michael/developing/project_data.csv")
 # source("global.R")
 
 # Define UI for App ----
@@ -158,7 +157,7 @@ ui <- list(
             specifically examining how much of the variance in car prices can be attributed 
             to differences in model and location after controlling for mileage?"),
           # Scatter plot to check the linearity assumption between mileage and price
-          ggplot(combined_data, aes(x = mileage, y = price)) +
+          ggplot(project_data, aes(x = mileage, y = price)) +
             geom_point() +
             geom_smooth(method = "lm", se = FALSE, col = "blue") +
             labs(title = "Scatter Plot of Price vs Mileage",
