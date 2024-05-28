@@ -155,13 +155,8 @@ ui <- list(
           p("This is Michael's first project in college using statistical skills,
             this project focus on How does car model,location and mileage affect car prices, 
             specifically examining how much of the variance in car prices can be attributed 
-            to differences in model and location after controlling for mileage?"),
-          # Scatter plot to check the linearity assumption between mileage and price
-          ggplot(project_data, aes(x = mileage, y = price)) +
-            geom_point() +
-            geom_smooth(method = "lm", se = FALSE, col = "blue") +
-            labs(title = "Scatter Plot of Price vs Mileage",
-                 x = "Mileage", y = "Price")
+            to differences in model and location after controlling for mileage?")
+          
         ),
         #### Set up Pop Quiz Page ----
         tabItem(
