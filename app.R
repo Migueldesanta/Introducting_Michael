@@ -7,7 +7,6 @@ library(boastUtils)
 library(ggplot2)
 
 # Load additional dependencies and setup functions
-project_data <- read.csv("https://raw.githubusercontent.com/Migueldesanta/Introducting_Michael/developing/project_data.csv")
 
 # Define UI for App ----
 ui <- list(
@@ -107,7 +106,7 @@ ui <- list(
             tags$li("Fun fact about Michael, he learned a party called Rent Is Too Damn High in American Politics class, And he used this as his final paper discussion.")
           ),
           p("Here's a picture of Michael:"),
-          img(src = "michael_picture.jpg", style = "display: block; margin: 0 auto;")
+          img(src = "myphoto.png", style = "display: block; margin: 0 auto;")
         ),
         #### Note: you must have at least one of the following pages. You might
         #### have more than one type and/or more than one of the same type. This
@@ -119,7 +118,7 @@ ui <- list(
           h2("Project"),
           p("This is Michael's first project in college using statistical skills."),
           p("This project focuses on How does car model, location, and mileage affect car prices, specifically examining how much of the variance in car prices can be attributed to differences in model and location after controlling for mileage?"),
-          img(src = "project_image.jpg", style = "display: block; margin: 0 auto;")
+          img(src = "scatterplot.png", style = "display: block; margin: 0 auto;")
         ),
         #### Set up Pop Quiz Page ----
         tabItem(
