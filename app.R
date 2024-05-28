@@ -6,6 +6,7 @@ library(shinyWidgets)
 library(boastUtils)
 library(ggplot2)
 
+
 # Load additional dependencies and setup functions
 
 # Define UI for App ----
@@ -100,13 +101,39 @@ ui <- list(
           withMathJax(),
           h2("Personal Profile"),
           p("Something you should know about Michael:"),
-          tags$ul(
-            tags$li("Michael is a rising senior double majoring in Statistics and Politics."),
-            tags$li("Michael's academic interests include voting behavior, U.S.-China relations, and Survey Methodology."),
-            tags$li("Fun fact about Michael, he learned a party called Rent Is Too Damn High in American Politics class, And he used this as his final paper discussion.")
+          box(
+            title = strong(" Which year does Michael is?"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = TRUE,
+            width = '100%',
+            "Michael is a rising senior double majoring in Statistics and Politics."
           ),
-          p("Here's a picture of Michael:"),
-          img(src = "myphoto.png", style = "display: block; margin: 0 auto;")
+          box(
+            title = strong("What are Michael's academic interests?"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = TRUE,
+            width = '100%',
+            "Michael's academic interests include voting behavior, U.S.-China relations, and Survey Methodology."
+          ),
+          box(
+            title = strong("Fun Facts about Michael?"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = TRUE,
+            width = '100%',
+            "he learned a party called Rent Is Too Damn High in American Politics class, And he used this as his final paper discussion."
+          ),
+          tags$figure(
+            class = "centerFigure",
+            tags$img(
+              src = "myphoto.jpg",
+              width = 500,
+              alt = "Picture of an astragalus (bone die)"
+            ),
+            tags$figcaption("I were hiking in Rothrock State Forest")
+          )
         ),
         #### Note: you must have at least one of the following pages. You might
         #### have more than one type and/or more than one of the same type. This
@@ -117,8 +144,18 @@ ui <- list(
           withMathJax(),
           h2("Project"),
           p("This is Michael's first project in college using statistical skills."),
-          p("This project focuses on How does car model, location, and mileage affect car prices, specifically examining how much of the variance in car prices can be attributed to differences in model and location after controlling for mileage?"),
-          img(src = "scatterplot.png", style = "display: block; margin: 0 auto;")
+          p("This project focuses on How does car model, location, and mileage affect car prices, 
+            specifically examining how much of the variance in car prices can be attributed to 
+            differences in model and location after controlling for mileage?"),
+          tags$figure(
+            class = "centerFigure",
+            tags$img(
+              src = "scatterplot.png",
+              width = 600,
+              alt = "Picture of an astragalus (bone die)"
+            ),
+            tags$figcaption("The answer is indeed!")
+          )
         ),
         #### Set up Pop Quiz Page ----
         tabItem(
