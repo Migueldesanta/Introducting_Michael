@@ -5,9 +5,9 @@ library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
 library(ggplot2)
+
 # Load additional dependencies and setup functions
 project_data <- read.csv("https://raw.githubusercontent.com/Migueldesanta/Introducting_Michael/developing/project_data.csv")
-# source("global.R")
 
 # Define UI for App ----
 ui <- list(
@@ -102,47 +102,12 @@ ui <- list(
           h2("Personal Profile"),
           p("Something you should know about Michael:"),
           tags$ul(
-            tags$li("Michael is a rising seinor double majoring in Statistics and Politics."),
-            tags$li("Michael's academic interest including voting behavior, 
-                    U.S.-China relations, and Survey Methodology."),
-            tags$li("Fun fact about Michael, he learned a party called Rent Is Too Damn High in American Politics class, 
-                    And he used this as his final paper discussion.")
+            tags$li("Michael is a rising senior double majoring in Statistics and Politics."),
+            tags$li("Michael's academic interests include voting behavior, U.S.-China relations, and Survey Methodology."),
+            tags$li("Fun fact about Michael, he learned a party called Rent Is Too Damn High in American Politics class, And he used this as his final paper discussion.")
           ),
-          p("Notice the use of an unordered list; users can move through the
-            list any way they wish."),
-          box(
-            title = strong("Null Hypothesis Significance Tests (NHSTs)"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = TRUE,
-            width = '100%',
-            "In the Confirmatory Data Analysis tradition, null hypothesis
-            significance tests serve as a critical tool to confirm that a
-            particular theoretical model describes our data and to make a
-            generalization from our sample to the broader population
-            (i.e., make an inference). The null hypothesis often reflects the
-            simpler of two models (e.g., 'no statistical difference',
-            'there is an additive difference of 1', etc.) that we will use to
-            build a sampling distribution for our chosen estimator. These
-            methods let us test whether our sample data are consistent with this
-            simple model (null hypothesis)."
-          ),
-          box(
-            title = strong(tags$em("p"), "-values"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = FALSE,
-            width = '100%',
-            "The probability that our selected estimator takes on a value at
-            least as extreme as what we observed given our null hypothesis. If
-            we were to carry out our study infinitely many times and the null
-            hypothesis accurately modeled what we're studying, then we would
-            expect for our estimator to produce a value at least as extreme as
-            what we have seen 100*(p-value)% of the time. The larger the
-            p-value, the more often we would expect our estimator to take on a
-            value at least as extreme as what we've seen; the smaller, the less
-            often."
-          )
+          p("Here's a picture of Michael:"),
+          img(src = "michael_picture.jpg", style = "display: block; margin: 0 auto;")
         ),
         #### Note: you must have at least one of the following pages. You might
         #### have more than one type and/or more than one of the same type. This
@@ -151,12 +116,10 @@ ui <- list(
         tabItem(
           tabName = "project",
           withMathJax(),
-          h2("yo"),
-          p("This is Michael's first project in college using statistical skills,
-            this project focus on How does car model,location and mileage affect car prices, 
-            specifically examining how much of the variance in car prices can be attributed 
-            to differences in model and location after controlling for mileage?")
-          
+          h2("Project"),
+          p("This is Michael's first project in college using statistical skills."),
+          p("This project focuses on How does car model, location, and mileage affect car prices, specifically examining how much of the variance in car prices can be attributed to differences in model and location after controlling for mileage?"),
+          img(src = "project_image.jpg", style = "display: block; margin: 0 auto;")
         ),
         #### Set up Pop Quiz Page ----
         tabItem(
@@ -167,9 +130,12 @@ ui <- list(
             what they learned in an Exploration and apply that knowledge in new
             contexts/situations. In essence, to have them challenge their
             understanding by testing themselves."),
-          p("What this page looks like will be up to you. Something you might
-            consider is to re-create the tools of the Exploration page and then
-            a list of questions for the user to then answer.")
+          p("Please answer the following questions:"),
+          tags$ol(
+            tags$li("What are Michael's academic interests?"),
+            tags$li("What is a fun fact about Michael?"),
+            tags$li("What is Michael's major?")
+          )
         ),
         #### Set up the References Page ----
         tabItem(
