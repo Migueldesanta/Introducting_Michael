@@ -62,7 +62,7 @@ ui <- list(
           tags$ol(
             tags$li("Learn more about Michael using the Personal Profile Tab."),
             tags$li("Explore Michael's project using the Project Tab."),
-            tags$li("Make a Pop Quiz")
+            tags$li("Make a Pop Quiz.")
           ),
           ##### Go Button--location will depend on your goals
           div(
@@ -72,7 +72,8 @@ ui <- list(
               label = "GO!",
               size = "large",
               icon = icon("bolt"),
-              style = "default"
+              style = "large",
+              disabled = FALSE
             )
           ),
           ##### Create two lines of space
